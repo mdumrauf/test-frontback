@@ -8,16 +8,25 @@ class SectorItem extends Component {
         super(props);
 
         this.state = {
-            isCollapsed: false
+            isCollapsed: false,
+            isChecked: false
         };
 
         this.handleClick = this.handleClick.bind(this);
+        this.handleCheckChange = this.handleCheckChange.bind(this);
     }
 
     render() {
         return (
             <div>
-            {!this.state.isCollapsed && this.props.sector.items ? '+' : '--'} <button onClick={this.handleClick}>{this.props.sector.name}</button>
+            {!this.state.isCollapsed && this.props.sector.items ? '+' : '--'}
+            <input
+                name="isChecked"
+                type="checkbox"
+                checked={this.state.isChecked}
+                onChange={this.handleCheckChange}
+            />
+            <button onClick={this.handleClick}>{this.props.sector.name}</button>
 
             {
                 this.state.isCollapsed &&
@@ -31,6 +40,12 @@ class SectorItem extends Component {
     handleClick() {
         this.setState((prevState) => ({
             isCollapsed: !prevState.isCollapsed
+        }));
+    }
+
+    handleCheckChange() {
+        this.setState((prevState) => ({
+            isChecked: !prevState.isChecked
         }));
     }
 }
