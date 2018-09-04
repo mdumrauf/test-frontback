@@ -1,24 +1,24 @@
 import React, {Component} from 'react';
 
+import SectorItem from "./SectorItem";
+
 
 class SectorList extends Component {
 
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return (
-            this.props.sectors.map(sector =>
-                <ul>
-                    <li key={sector.id}>{sector.name}</li>
-                    {
-                        sector.items && <SectorList sectors={sector.items}/>
-                    }
-                </ul>
-            )
+            <ul>
+            {
+                this.props.sectors.map(sector =>
+                    <li>
+                        <SectorItem key={sector.id} sector={sector} />
+                    </li>
+                )
+            }
+            </ul>
         );
     }
+
 }
 
 export default SectorList;
